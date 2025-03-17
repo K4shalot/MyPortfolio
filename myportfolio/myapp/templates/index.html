@@ -1,0 +1,162 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="{% static 'myapp/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>My Portfolio</h1>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects&Certificates</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- About and Skills Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="about-content">
+                <!-- About Me Section -->
+                <div class="bio">
+                    <h2>About Me</h2>
+                    <img src="{% static 'images/profile_photo.jpg' %}" alt="Me" class="profile-img">
+                    <p>{{about_me}}</p>
+                </div>
+
+                <!-- Skills and Technologies Section -->
+                <div class="skills">
+                    <h2>Skills and Technologies</h2>
+                    <div class="skills-list">
+                        <div class="skill">
+                            <i class="fab fa-python"></i>
+                            <p>Python</p>
+                        </div>
+                        <div class="skill">
+                            <i class="fa-brands fa-linux"></i>
+                            <p>Linux</p>
+                        </div>
+                        <div class="skill">
+                            <i class="fab fa-html5"></i>
+                            <p>HTML</p>
+                        </div>
+                        <div class="skill">
+                            <i class="fab fa-css3-alt"></i>
+                            <p>CSS</p>
+                        </div>
+                        <div class="skill">
+                            <i class="fab fa-github"></i>
+                            <p>Git</p>
+                        </div>
+                        <div class="skill">
+                            <i class="fa-solid fa-database"></i>
+                            <p>Sqlite</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2>My Projects</h2>
+            <div class="projects">
+                {% for project in projects %}
+                    <div class="project-card">
+                        <h3>{{project.name}}</h3>
+                        <p>{{project.description}}</p>
+                        {% if project.urls %}
+                            <a href="{{ project.urls }}" class="btn btn-primary" target="_blank">Check it here. </a>
+                        {% endif %}
+                    </div>
+                {% empty %}
+                    <p>No projects available.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <div class="certificates">
+        <h2>My Certificates</h2>
+        <div class="certificates-list">
+            {% for certificate in certificates %}
+                <div class="certificate-card">
+                    <h3>{{ certificate.name }}</h3>
+                    <p>{{ certificate.description }}</p>
+                    <p><strong>Issued on:</strong> {{ certificate.date_issued }}</p>
+                    {% if certificate.file %}
+                        <a href="{{ certificate.file.url }}" target="_blank" class="btn btn-primary">Download Certificate</a>
+                    {% endif %}
+                </div>
+            {% empty %}
+                <p>No certificates available.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2>Contact Me</h2>
+            <p>If you would like to work together or have any questions, feel free to reach out!</p>
+            <!-- Social Media Links -->
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/yourprofile" target="_blank">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="https://github.com/yourprofile" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://t.me/example" target="_blank">
+                    <i class="fab fa-telegram-plane"></i> Telegram
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Message Form and Certificates Section -->
+    <section id="message-and-certificates" class="section">
+        <div class="container">
+            <div class="message-and-certificates-content">
+                <!-- Message Form Section -->
+                <div class="message-form">
+                    <h3>Contact me below ↓:</h3>
+                    <form id="contact-form" method="POST" action="{% url 'send_email' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="message"></label>
+                            <textarea id="message" name="message" rows="6" placeholder="Write your message here..." required class="message-input"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 My Portfolio</p>
+        </div>
+    </footer>
+
+</body>
+</html>
