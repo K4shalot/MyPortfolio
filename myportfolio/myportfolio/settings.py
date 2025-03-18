@@ -40,7 +40,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(" ")
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -96,15 +96,20 @@ WSGI_APPLICATION = 'myportfolio.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+database_url = os.environ.get("DATABASE_URL", "")
+
+if database_url:  # Якщо DATABASE_URL існує, використовуємо її
+    DATABASES = {
+        'default': dj_database_url.parse(database_url)
     }
-}
-database_url = os.environ.get("DATABASES_URL")
-DATABASES["default"]= dj_database_url.parse(database_url)
-#postgresql://portfolio_website_5oiu_user:zZ3sMy1Pbi9i8w0J2ek6YlxaKhq5MhK8@dpg-cvci6hpc1ekc73erk0t0-a.oregon-postgres.render.com/portfolio_website_5oiu")
+else:  # Інакше, використовуємо SQLite для локального середовища
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
