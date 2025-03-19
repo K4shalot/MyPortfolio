@@ -35,19 +35,19 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
+DEBUG = True
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(" ")
+ALLOWED_HOSTS = []
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.environ.get("GMAIL_NAME")
-EMAIL_HOST_PASSWORD = os.environ.get("GMAIL_PASSWORD")
+EMAIL_HOST_USER = os.getenv("GMAIL_NAME")
+EMAIL_HOST_PASSWORD = os.getenv("GMAIL_PASSWORD")
 
 # Application definition
 
@@ -96,20 +96,15 @@ WSGI_APPLICATION = 'myportfolio.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-database_url = os.environ.get("DATABASE_URL", "")
-
-if database_url:  # Якщо DATABASE_URL існує, використовуємо її
-    DATABASES = {
-        'default': dj_database_url.parse(database_url)
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-else:  # Інакше, використовуємо SQLite для локального середовища
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+}
 
+
+#postgresql://portfolio_website_5oiu_user:zZ3sMy1Pbi9i8w0J2ek6YlxaKhq5MhK8@dpg-cvci6hpc1ekc73erk0t0-a.oregon-postgres.render.com/portfolio_website_5oiu
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
