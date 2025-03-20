@@ -15,7 +15,6 @@
         <div class="line"></div>
         <div class="line"></div>
     </div>
-    <!-- Header -->
     <header>
         <div class="container">
             <h1>My Portfolio</h1>
@@ -28,19 +27,14 @@
             </nav>
         </div>
     </header>
-
-    <!-- About and Skills Section -->
     <section id="about" class="section">
         <div class="container">
             <div class="about-content">
-                <!-- About Me Section -->
                 <div class="bio">
                     <h2>About Me</h2>
                     <img src="{% static 'images/profile_photo.jpg' %}" alt="Me" class="profile-img">
                     <p>{{about_me}}</p>
                 </div>
-
-                <!-- Skills and Technologies Section -->
                 <div class="skills">
                     <h2>Skills and Technologies</h2>
                     <div class="skills-list">
@@ -73,8 +67,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Projects Section -->
     <section id="projects" class="section">
         <div class="container">
             <h2>My Projects</h2>
@@ -93,8 +85,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Certificates Section -->
     <div class="certificates">
         <h2>My Certificates</h2>
         <div class="certificates-list">
@@ -112,13 +102,10 @@
             {% endfor %}
         </div>
     </div>
-
-    <!-- Contact Section -->
     <section id="contact" class="section">
         <div class="container">
             <h2>Contact Me</h2>
             <p>If you would like to work together or have any questions, feel free to reach out!</p>
-            <!-- Social Media Links -->
             <div class="social-links">
                 <a href="https://www.linkedin.com/in/rostyslav-myshok-b12566278/" target="_blank">
                     <i class="fab fa-linkedin"></i> LinkedIn
@@ -132,11 +119,9 @@
             </div>
         </div>
     </section>
-    <!-- Message Form and Certificates Section -->
     <section id="message-and-certificates" class="section">
         <div class="container">
             <div class="message-and-certificates-content">
-                <!-- Message Form Section -->
                 <div class="message-form">
                     <h3>Contact me below ↓:</h3>
                     <form id="contact-form" method="POST" action="{% url 'send_email' %}">
@@ -155,12 +140,10 @@
             </div>
         </div>
     </section>
-    <!-- Footer -->
     <footer>
         <div class="container">
             <p>&copy; 2025 My Portfolio</p>
         </div>
     </footer>
-
 </body>
 </html>
