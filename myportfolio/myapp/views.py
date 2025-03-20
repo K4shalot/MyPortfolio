@@ -21,20 +21,23 @@ def home(request):
 
 def send_email(request):
     if request.method == "POST":
+        email = request.POST.get('email')
         message = request.POST.get('message')
-        if message:
+
+        if message and email:
+            full_message = f"From: {email}\n\nMessage:\n{message}"
             
             send_mail(
                 'New message from portfolio',
-                message,
+                full_message,
                 os.getenv('GMAIL_NAME'),
                 [os.getenv('GMAIL_NAME')],
             )
-            
+
             messages.success(request, 'Message sent successfully!')
             return redirect('home')
         else:
-            messages.error(request, 'No message provided!')
+            messages.error(request, 'Please provide both email and message!')
             return redirect('home')
     else:
         return redirect('home')
