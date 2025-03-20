@@ -201,7 +201,8 @@ form {
     gap: 20px;
 }
 
-textarea {
+textarea,
+input[type="email"] {
     padding: 15px;
     font-size: 1em;
     border: 1px solid #ccc;
@@ -214,7 +215,12 @@ textarea {
     width: 100%;
 }
 
-textarea:focus {
+input[type="email"] {
+    height: 50px;
+}
+
+textarea:focus,
+input[type="email"]:focus {
     border-color: #333;
     background-color: #fff;
 }
