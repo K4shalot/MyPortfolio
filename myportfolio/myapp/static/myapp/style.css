@@ -157,12 +157,14 @@ header nav ul li a:hover {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
+    justify-content: center
 }
 
 .project-card {
     background-color: #383838;
     padding: 20px;
-    width: 30%;
+    width: 100%;
+    max-width: 400px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
@@ -201,8 +203,7 @@ form {
     gap: 20px;
 }
 
-textarea,
-input[type="email"] {
+textarea {
     padding: 15px;
     font-size: 1em;
     border: 1px solid #ccc;
@@ -216,6 +217,16 @@ input[type="email"] {
 }
 
 input[type="email"] {
+    padding: 15px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: none;
+    min-height: 50px;
+    transition: border-color 0.3s ease;
+    background-color: #383838;
+    font-family: 'Arial', sans-serif;
+    width: 100%;
     height: 20px;
 }
 
@@ -252,8 +263,8 @@ button:hover {
     display: flex;
     font-size: 14px;
     gap: 20px;
-    margin-top: 10px; /* Зменшений відступ */
-    margin-bottom: 10px; /* Зменшений відступ */
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .social-links a {
@@ -356,20 +367,71 @@ footer {
 }
 
 
+@media (max-width: 1024px) {
+    .container {
+        width: 90%;
+    }
+    
+    header h1 {
+        font-size: 2em;
+    }
+}
+
 @media (max-width: 768px) {
-    #message-and-certificates {
+    header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .bio {
+        width: 100%;
+    }
+
+    .projects {
         flex-direction: column;
         align-items: center;
     }
 
-    .message-form,
-    .certificates {
-        max-width: 100%;
+    #contact-form {
+        padding: 20px;
     }
 
-    .certificates-list {
-        flex-direction: column;
-        align-items: center;
+    textarea {
+        min-height: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    .profile-img {
+        width: 100px;
+        height: 100px;
+    }
+
+    button {
+        font-size: 1em;
+        padding: 10px 15px;
+    }
+
+    textarea {
+        min-height: 80px;
+    }
+
+    input[type="email"] {
+        height: 40px;
     }
 }
 
