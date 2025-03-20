@@ -22,4 +22,4 @@ class Certificate(models.Model):
     date_issued = models.DateField()
 
     def __str__(self):
-        return self.name
+        return self.name if self.name else "Unnamed Certificate"
