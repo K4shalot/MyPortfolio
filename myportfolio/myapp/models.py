@@ -18,7 +18,7 @@ class Project(models.Model):
 class Certificate(models.Model): 
     name = models.CharField(max_length=255)
     description = models.TextField()
-    file = CloudinaryField('file', null=True, blank=True)
+    file_url = models.URLField(max_length=500, blank=True, null=True)
     date_issued = models.DateField()
 
     def __str__(self):

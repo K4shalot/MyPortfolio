@@ -103,8 +103,8 @@
                     <h3>{{ certificate.name }}</h3>
                     <p>{{ certificate.description }}</p>
                     <p><strong>Issued on:</strong> {{ certificate.date_issued }}</p>
-                    {% if certificate.file %}
-                        <a href="{{ certificate.file.url }}" target="_blank" class="btn btn-primary">Download Certificate</a>
+                    {% if certificate.file_url %}
+                        <a href="{{ certificate.file_url }}" target="_blank" class="btn btn-primary">Download Certificate</a>
                     {% endif %}
                 </div>
             {% empty %}
