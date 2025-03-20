@@ -14,8 +14,23 @@ from pathlib import Path
 from dotenv import load_dotenv
 import os
 import dj_database_url
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 
 load_dotenv()
+
+#CLOUDINARY MEDIA STORAGE
+
+cloudinary.config( 
+  cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME'), 
+  api_key=os.getenv('CLOUDINARY_API_KEY'), 
+  api_secret=os.getenv('CLOUDINARY_API_SECRET')
+)
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 
 class AboutMe(models.Model):
     text = models.TextField()
@@ -14,10 +15,10 @@ class Project(models.Model):
     def __str__(self):
         return self.name
     
-class Certificate(models.Model):
+class Certificate(models.Model): 
     name = models.CharField(max_length=255)
     description = models.TextField()
-    file = models.FileField(upload_to='certificates/',null=True,blank=True)
+    file = CloudinaryField('file', null=True, blank=True)
     date_issued = models.DateField()
 
     def __str__(self):
