@@ -20,7 +20,7 @@ from myapp import views
 from myapp.views import home, send_email
 from django.conf.urls.static import static
 from django.conf import settings
-
+from django.shortcuts import render
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,3 +30,7 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = 'myapp.urls.custom_404_view'
+
+    
