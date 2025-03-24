@@ -2,48 +2,111 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>404 - Page Not Found</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Lost in Space</title>
     <style>
         body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, #2c2c2c, #444);
-            color: #fff;
+            background: radial-gradient(circle, #0a0a2a, #000014);
+            overflow: hidden;
+            position: relative;
+            color: white;
             font-family: 'Arial', sans-serif;
+        }
+
+        .container {
             text-align: center;
         }
-        .container {
-            max-width: 600px;
-        }
+
         h1 {
-            font-size: 10rem;
+            font-size: 8rem;
             margin: 0;
         }
+
         p {
             font-size: 1.5rem;
+            margin: 20px 0;
         }
+
         a {
-            color: #00bcd4;
             text-decoration: none;
-            border: 1px solid #00bcd4;
+            color: #fff;
+            background: #4a90e2;
             padding: 10px 20px;
             border-radius: 8px;
-            transition: background 0.3s ease;
+            transition: background 0.3s;
         }
+
         a:hover {
-            background: #00bcd4;
-            color: #000;
+            background: #357abd;
+        }
+
+        .rocket {
+            position: absolute;
+            width: 100px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            opacity: 0.8;
+            border-radius: 50%;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>404</h1>
-        <p>Oops! The page you’re looking for doesn’t exist.</p>
-        <a href="/">Go Back Home</a>
+        <p>Looks like you lost in space</p>
+        <a href="/">Go Home</a>
     </div>
+
+    <img src="{% static 'images/rocket.jpg' %}" alt="Rocket" class="rocket" style="top: 30%; left: 60%;">
+
+    <div class="stars" id="stars"></div>
+
+    <script>
+        const starsContainer = document.getElementById('stars');
+
+        function createStar() {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const [x, y] = [Math.random() * window.innerWidth, Math.random() * window.innerHeight];
+            const size = Math.random() * 3;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.top = `${y}px`;
+            star.style.left = `${x}px`;
+            starsContainer.appendChild(star);
+        }
+
+        for (let i = 0; i < 150; i++) {
+            createStar();
+        }
+    </script>
 </body>
 </html>
