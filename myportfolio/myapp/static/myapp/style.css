@@ -186,7 +186,7 @@ header nav ul li a:hover {
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 750px;
+    max-width: 600px;
     margin: 0 auto;
 }
 
@@ -342,18 +342,24 @@ footer {
 }
 
 #message-and-certificates {
-    display: grid;
-    place-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-height: 100vh;
     width: 100%;
-    padding: 10px 0;
     box-sizing: border-box;
+    padding: 20px;
+    padding: 10px 0;
 }
 
 .message-form {
-    flex: 1 1 100%;
     max-width: 900px;
     width: 100%;
+    padding: 40px;
+    background-color: #383838;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    flex: 1 1 100%;
 }
 
 
@@ -394,6 +400,9 @@ footer {
 
     #contact-form {
         padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
     }
 
     textarea {
