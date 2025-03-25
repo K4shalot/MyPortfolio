@@ -24,6 +24,7 @@ from django.shortcuts import render
 from django.conf.urls import handler404
 from django.views.generic import RedirectView
 
+handler404 = 'myapp.views.custom_404_view'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,7 +36,5 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-handler404 = 'myapp.views.custom_404_view'
 
     
