@@ -22,11 +22,15 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.shortcuts import render
 from django.conf.urls import handler404
+from django.views.generic import RedirectView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('send_email/', views.send_email, name='send_email'),
+    path('favicon.ico', RedirectView.as_view(url='/static/images/favicon.ico')),
+
 ]
 
 if settings.DEBUG:
