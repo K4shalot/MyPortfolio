@@ -43,5 +43,4 @@ def send_email(request):
         return redirect('home')
 
 def custom_404_view(request,exception):
-    # noqa: ARG002 - Ignore unused 'exception' parameter
     return render(request, '404.html', status=404)
