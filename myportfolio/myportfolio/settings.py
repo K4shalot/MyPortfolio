@@ -130,7 +130,6 @@ DATABASES = {
     }
 }
 
-#postgresql://portfolio_website_5oiu_user:zZ3sMy1Pbi9i8w0J2ek6YlxaKhq5MhK8@dpg-cvci6hpc1ekc73erk0t0-a.oregon-postgres.render.com/portfolio_website_5oiu
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
