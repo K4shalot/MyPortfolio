@@ -18,23 +18,4 @@ This is a personal portfolio website created using **Django**. The goal of this 
 
 ## Setup
 
-To run the project locally, follow these steps:
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/Portfolio.git
-2. Install requirements.txt:
-    pip install -r requirements.txt
-3. Activate venv:
-    Windows: source Venvname/Scripts/activate
-    MacOS: source venv/bin/activate
-4. Go to application folder and run server:
-    cd myportolio
-    python manage.py runserver
-    click the link in the terminal
-
-
-You can actually change information about yourself in portfolio just by changing information in /admin page.
-If you want to change photo just change it localy in vs code(static/images/profile_photo.jpg)
-Important!!! Photo name must be the same as mine.
-Maybe in future add possibility to add photo through django /admin pannel. 
+Maybe in future)
