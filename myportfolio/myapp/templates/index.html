@@ -68,21 +68,33 @@
             </div>
         </div>
     </section>
-    <section id="projects" class="section">
+   <section id="projects" class="section">
+    <h2>My Pet Projects</h2>
         <div class="container">
-            <h2>My Projects</h2>
+            <h2>.</h2>
             <div class="projects">
-                {% for project in projects %}
-                    <div class="project-card">
-                        <h3>{{project.name}}</h3>
-                        <p>{{project.description}}</p>
-                        {% if project.urls %}
-                            <a href="{{ project.urls }}" class="btn btn-primary" target="_blank">Check it here. </a>
-                        {% endif %}
+            {% for project in projects %}
+                <div class="card">
+                <div class="face face1">
+                    <div class="content">
+                    <div class="icon">
+                        <i class="fa fa-code-fork" aria-hidden="true"></i>
                     </div>
-                {% empty %}
-                    <p>No projects available.</p>
-                {% endfor %}
+                    </div>
+                </div>
+                <div class="face face2">
+                    <div class="content">
+                    <h3>{{ project.name }}</h3>
+                    <p>{{ project.description }}</p>
+                    {% if project.urls %}
+                        <a href="{{ project.urls }}" class="btn btn-primary" target="_blank">Check it here</a>
+                    {% endif %}
+                    </div>
+                </div>
+                </div>
+            {% empty %}
+                <p>No projects available.</p>
+            {% endfor %}
             </div>
         </div>
     </section>

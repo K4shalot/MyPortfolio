@@ -9,7 +9,7 @@ class AboutMe(models.Model):
     
 class Project(models.Model):
     name = models.CharField(max_length=255)
-    description = models.TextField()
+    description = models.TextField(blank=True)
     urls = models.URLField(null=True,blank=True)
     
     def __str__(self):
