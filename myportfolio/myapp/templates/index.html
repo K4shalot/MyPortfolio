@@ -16,24 +16,26 @@
         <div class="line"></div>
         <div class="line"></div>
     </div>
+
     <header>
         <div class="container">
             <h1>My Portfolio</h1>
             <nav>
                 <ul>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#projects">Projects&Certificates</a></li>
+                    <li><a href="#projects">Projects & Certificates</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
+
     <section id="about" class="section">
         <div class="container">
             <div class="about-content">
                 <div class="bio">
                     <h2>About Me</h2>
-                    <img src="{% static 'images/profile_photo.jpg' %}" alt="Me" class="profile-img">
+                    <img src="{% static 'images/profile_photo.jpg' %}" alt="My profile photo" class="profile-img">
                     <p>{{about_me}}</p>
                 </div>
                 <div class="skills">
@@ -60,65 +62,62 @@
                             <p>Git</p>
                         </div>
                         <div class="skill">
+                            <i class="fa-brands fa-docker"></i>
+                            <p>Docker</p>
+                        </div>
+                        <div class="skill">
                             <i class="fa-solid fa-database"></i>
-                            <p>Sql</p>
+                            <p>SQL</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-   <section id="projects" class="section">
-    <h2>My Pet Projects</h2>
+
+    <section id="projects" class="section">
         <div class="container">
-            <h2>.</h2>
-            <div class="projects">
-            {% for project in projects %}
-                <div class="card">
-                <div class="face face1">
-                    <div class="content">
-                    <div class="icon">
-                        <i class="fa fa-code-fork" aria-hidden="true"></i>
+            <h2>My Pet Projects</h2>
+            <div class="projects-grid">
+                {% for project in projects %}
+                    <div class="project-card">
+                        <h3>{{ project.name }}</h3>
+                        <p>{{ project.description }}</p>
+                        {% if project.urls %}
+                            <a href="{{ project.urls }}" class="btn btn-primary" target="_blank">Check it here</a>
+                        {% endif %}
                     </div>
-                    </div>
-                </div>
-                <div class="face face2">
-                    <div class="content">
-                    <h3>{{ project.name }}</h3>
-                    <p>{{ project.description }}</p>
-                    {% if project.urls %}
-                        <a href="{{ project.urls }}" class="btn btn-primary" target="_blank">Check it here</a>
-                    {% endif %}
-                    </div>
-                </div>
-                </div>
-            {% empty %}
-                <p>No projects available.</p>
-            {% endfor %}
+                {% empty %}
+                    <p>No projects available.</p>
+                {% endfor %}
             </div>
         </div>
     </section>
-    <div class="certificates">
-        <h2>My Certificates</h2>
-        <div class="certificates-list">
-            {% for certificate in certificates %}
-                <div class="certificate-card">
-                    <h3>{{ certificate.name }}</h3>
-                    <p>{{ certificate.description }}</p>
-                    <p><strong>Issued on:</strong> {{ certificate.date_issued }}</p>
-                    {% if certificate.file_url %}
-                        <a href="{{ certificate.file_url }}" target="_blank" class="btn btn-primary">Download Certificate</a>
-                    {% endif %}
-                </div>
-            {% empty %}
-                <p>No certificates available.</p>
-            {% endfor %}
+
+    <section class="section certificates">
+        <div class="container">
+            <h2>My Certificates</h2>
+            <div class="certificates-list">
+                {% for certificate in certificates %}
+                    <div class="certificate-card">
+                        <h3>{{ certificate.name }}</h3>
+                        <p>{{ certificate.description }}</p>
+                        <p><strong>Issued on:</strong> {{ certificate.date_issued }}</p>
+                        {% if certificate.file_url %}
+                            <a href="{{ certificate.file_url }}" target="_blank" class="btn btn-primary">Download Certificate</a>
+                        {% endif %}
+                    </div>
+                {% empty %}
+                    <p>No certificates available.</p>
+                {% endfor %}
+            </div>
         </div>
-    </div>
+    </section>
+
     <section id="contact" class="section">
         <div class="container">
-            <h2>Contact Me</h2>
-            <p>If you would like to work together or have any questions, feel free to reach out!</p>
+            <h2>Get in Touch</h2>
+            <p>I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.</p>
             <div class="social-links1">
                 <a href="https://www.linkedin.com/in/rostyslav-myshok-b12566278/" target="_blank">
                     <i class="fab fa-linkedin"></i> LinkedIn
@@ -132,30 +131,30 @@
             </div>
         </div>
     </section>
-    <section id="message-and-certificates" class="section">
+
+    <section id="contact-form-section" class="section">
         <div class="container">
-            <div class="message-and-certificates-content">
-                <div class="message-form">
-                    <h3>Contact me below ↓</h3>
-                    <form id="contact-form" method="POST" action="{% url 'send_email' %}">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <label for="email"></label>
-                            <input type="email" id="email" name="email" placeholder="Your email..." required class="email-input">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Your message:</label>
-                            <textarea id="message" name="message" rows="6" placeholder="Write your message here..." required class="message-input"></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">Send Message</button>
-                    </form>
-                </div>
+            <h2 class="form-title">Send Me a Message</h2>
+            <div class="message-form-wrapper">
+                <form id="contact-form" method="POST" action="{% url 'send_email' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="email" class="sr-only">Your Email</label>
+                        <input type="email" id="email" name="email" placeholder="Your email..." required class="email-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="sr-only">Your Message</label>
+                        <textarea id="message" name="message" rows="6" placeholder="Write your message here..." required class="message-input"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
             </div>
         </div>
     </section>
+
     <footer>
         <div class="container">
-            <p>&copy; 2025 My Portfolio</p>
+            <p>&copy; 2025 My Portfolio. All Rights Reserved.</p>
         </div>
     </footer>
 </body>
